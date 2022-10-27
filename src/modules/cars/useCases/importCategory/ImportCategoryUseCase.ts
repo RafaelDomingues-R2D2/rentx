@@ -12,7 +12,7 @@ interface IImportCategory {
 @injectable()
 class ImportCategoryUseCase {
     constructor(
-        @inject('CreategoriesRepository') 
+        @inject('CategoriesRepository') 
         private categoriesRepository: ICategoriesRepository
     ) {}
 
@@ -33,6 +33,7 @@ class ImportCategoryUseCase {
                 })
             })
             .on('end', () => {
+                fs.promises.unlink(file.path)
                 resolve(categories)
             })
             .on('error', (err) => {
