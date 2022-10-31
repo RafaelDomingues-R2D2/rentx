@@ -20,6 +20,7 @@ services:
       - 3001:3001
     volumes:
       - .:/usr/app
+      - /usr/app/node_modules/brycpt/
     links: 
       - database_ignite
     depends_on:
