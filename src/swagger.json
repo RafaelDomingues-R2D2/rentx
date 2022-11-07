@@ -1,7 +1,7 @@
 {
     "openapi": "3.0.0",
     "info": {
-        "title": "RentX Documentation",
+        "title": "Template Documentation",
         "description": "This is an API Rent",
         "version": "1.0.0",
         "contacnt":{
@@ -9,28 +9,16 @@
         }
     },
     "paths": {
-        "/categories": {
+        "/users": {
             "post": {
-                "tags": ["Category"],
-                "summary": "Create a category",
-                "description": "Create a new category",
+                "tags": ["Users"],
+                "summary": "Create a users",
+                "description": "Create a new users",
                 "requestBody": {
                     "content": {
                         "application/json": {
                             "schema": {
-                                "type": "object",
-                                "properties": {
-                                    "name": {
-                                        "type": "string"
-                                    },
-                                    "description": {
-                                        "type": "string"
-                                    }
-                                },
-                                "example": {
-                                    "name": "category name sample",
-                                    "description": "category description sample"
-                                }
+                                "$ref": "#/definitions/Users"
                             }
                         }
                     }
@@ -40,76 +28,22 @@
                         "description": "Created"
                     },
                     "500": {
-                        "description": "Category already exists"
-                    }
-                }
-            },
-            "get": {
-                "tags": ["Category"],
-                "summary": "List all categories",
-                "description": "List all categories",
-                "responses": {
-                    "200": {
-                        "description": "Success",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "array",
-                                    "items": {
-                                        "type": "object",
-                                        "properties": {
-                                            "name": {
-                                                "type": "string"
-                                            },
-                                            "description": {
-                                                "type": "string"
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
+                        "description": "Users already exists"
                     }
                 }
             }
+            
         },
-        "/categories/import": {
+        "/sessions": {
             "post": {
-                "tags": ["Category"],
-                "summary": "Upload a new category",
-                "description": "Upload a new category",
-                "requestBody": {
-                    "content": {
-                        "multipart/form-data": {
-                            "schema": {
-                                "type": "object",
-                                "properties": {
-                                    "file": {
-                                        "type": "string",
-                                        "format": "binary"
-                                    }
-                                }
-                            }
-                        }  
-                    }
-                },
-                "responses": {
-                    "201": {
-                        "description": "Created"
-                    }
-                }
-            }
-        },
-        "/specifications": {
-            "post": {
-                "tags": ["Specifications"],
-                "summary": "Create a specification",
-                "description": "Create a new specification",
+                "tags": ["Users"],
+                "summary": "Create a sessions",
+                "description": "Create a new sessions",
                 "requestBody": {
                     "content": {
                         "application/json": {
                             "schema": {
-                                "$ref": "#/definitions/Specification"
+                                "$ref": "#/definitions/Sessions"
                             }
                         }
                     }
@@ -117,26 +51,75 @@
                 "responses": {
                     "201": {
                         "description": "Created"
-                    },
-                    "500": {
-                        "description": "Specification already exists"
+                    }
+                }
+            }
+        },
+        "/avatar": {
+            "patch": {
+                "tags": ["Users"],
+                "summary": "Add a avatar",
+                "description": "Create a new avatar",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/definitions/Avatar"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "204": {
+                        "description": "Created"
                     }
                 }
             }
         }
     },
     "definitions": {
-        "Specification": {
+        "Users": {
             "type": "object",
             "properties": {
                 "name": {
                     "type": "string"
                 },
-                "description": {
+                "email": {
+                    "type": "string"
+                },
+                "password": {
                     "type": "string"
                 }
             }
+        },
+        "Sessions": {
+            "type": "object",
+            "properties": {
+                "email": {
+                    "type": "string"
+                },
+                "password": {
+                    "type": "string"
+                }
+            }
+        },
+        "Avatar": {
+            "type": "object",
+            "properties": {
+                "multipart/form-data": {
+                    "schema": {
+                        "type": "object",
+                        "properties": {
+                            "file": {
+                                "type": "string",
+                                "format": "binary"
+                            }
+                        }
+                    }
+                }  
+            }
         }
+        
     }
 
 }

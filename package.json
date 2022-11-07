@@ -1,8 +1,9 @@
 {
-  "name": "rentalx",
+  "name": "template",
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
+  "author": "RafaelDomingues-R2D2",
   "scripts": {
     "dev": "ts-node-dev --inspect --transpile-only --ignore-watch node_modules --respawn src/server.ts",
     "typeorm": "ts-node-dev ./node_modules/typeorm/cli"

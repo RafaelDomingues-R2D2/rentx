@@ -1,30 +1,30 @@
-version: '3.7'
+version: '3'
 
 services:
-  database_ignite:
+  database_template:
     image: postgres
-    container_name: database_ignite
+    container_name: database_template
     restart: always
     ports:
       - 5432:5432
     environment:
-      - POSTGRES_USER=docker
-      - POSTGRES_PASSWORD=ignite
-      - POSTGRES_DB=rentx
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=mudar1234
+      - POSTGRES_DB=template
     volumes:
       - pgdata:/var/lib/postgresql/data
   app:
     build: .
-    container_name: rentx
+    container_name: template
     ports:
       - 3001:3001
     volumes:
       - .:/usr/app
       - /usr/app/node_modules/brycpt/
     links: 
-      - database_ignite
+      - database_template
     depends_on:
-      - database_ignite
+      - database_template
 
 volumes:
   pgdata:
